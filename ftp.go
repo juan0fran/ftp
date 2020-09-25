@@ -367,12 +367,6 @@ func (c *ServerConn) setUTF8() error {
 		return nil
 	}
 
-	// Workaround for FTP servers, that does explicitelly support the function,
-	// but once OPTS si sent, the server replies with "no implemented".
-	if code == StatusNotImplementedParameter {
-		return nil
-	}
-
 	if code != StatusCommandOK {
 		return errors.New(message)
 	}
